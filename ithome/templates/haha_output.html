@@ -1,0 +1,272 @@
+
+{% extends "haha_base.html" %}
+{% block title %} LawxTech {% endblock %}
+{% block content%}
+
+<!-- Container (About Section) -->
+<div class="w3-content w3-container w3-center w3-padding-32" id="form">
+  <h3 class="w3-center" style="font-size:400%">分析結果</h3>
+  <h1 class="w3-center" style="font-size:120%">以下資料為您的房屋判斷為凶宅的機率，以及您可以獲得多少賠償</h1>
+  <br>
+  <br>
+  <!--<p class="w3-center"><em>這行先放著</em></p> -->
+  <!--em是斜線   w3-hover-blue  w3-text-teal -->
+    <label class="w3-cente">斷定為凶宅</label>
+    <div class="w3-container w3-light-gray w3-round-large">
+        {{output.is_bad_house}}
+    </div>
+    
+    <label class="w3-cente">斷定為凶宅機率</label>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.bad_house}} name="DynamicBar1" style="width:100%">{{output.bad_house}}%</div>
+    </div>
+    <br>
+
+    
+    <label class="w3-cente" style="">判賠房價</label>
+    <div class="w3-container w3-light-gray w3-round-large">
+    {% if output.h_price %}
+        損害賠償：{{output.h_price}}
+    {% else %}
+        損害賠償：{{output.h_price_min}} ~ {{output.h_price_max}}　元
+    {% endif %}
+    </div>    
+
+    <br>
+    <label class="w3-cente" style="">相關案件</label>
+    <div class="w3-container w3-light-gray w3-round-large">
+    {% for case in best_case %}
+        <p>{{case}}</p>
+    {% endfor %}
+    </div>   
+    
+    <br>
+    <br>
+    <br>
+    
+    
+    <h1 class="w3-center" style="font-size:90%">點選詳細資料可以了解各法條提告成功的機率</h1>
+    
+    <div class="w3-bar">
+    <button type="button" class="w3-button w3-dark-grey"  onclick="target1()">詳細情況-賣家</button>
+    <button type="button" class="w3-button w3-dark-grey"  onclick="target2()">詳細情況-仲介</button>
+    </div>
+    
+    <div id="F1" class="collapse collapse1">
+    <h1 class="w3-center" style="font-size:90%">以下為可以對出賣人提告的民法法條</h1>
+    <br>
+    
+    
+    <label class="w3-cente" style="" name="labelremove">民法第354條 - 瑕疵擔保</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingleRela.aspx?PCODE=B0000001&FLNO=354&ty=L','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s354}} name="bar" style="width:0%">{{output.s354}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第179條 - 不當得利</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=179','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s179}} name="bar" style="width:80%">{{output.s179}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第92條 - 詐欺</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=92','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s92}} name="bar" style="width:80%">{{output.s92}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第184條第1項前段 - 侵權行為</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=184','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s184}} name="bar" style="width:80%">{{output.s184}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第184條第1項後段 - 侵權行為</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=184','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s184_1}} name="bar" style="width:80%">{{output.s184_1}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第184條第2項 - 侵權行為</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=184','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s184_2}} name="bar" style="width:80%">{{output.s184_2}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第227條第1項 - 不完全給付</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=227','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s227}} name="bar" style="width:80%">{{output.s227_1}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第227條第2項 - 不完全給付</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=227','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s227_2}} name="bar" style="width:80%">{{output.s227_2}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第227條之1 - 債務不履行的損害賠償責任</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=227-1','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s227_1}} name="bar" style="width:80%">{{output.s227_1}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第359條 - 減少價金</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=359','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s359m}} name="bar" style="width:80%">{{output.s359m}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第359條 - 解約</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=359','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s359}} name="bar" style="width:80%">{{output.s359}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第360條 - 損害賠償</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=360','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s360}} name="bar" style="width:80%">{{output.s360}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第259條 - 返還價金</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=259','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s259}} name="bar" style="width:80%">{{output.s259}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第260條 - 損害賠償</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=260','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.s260}} name="bar" style="width:80%">{{output.s260}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    </div>
+
+    <div id="F2" class="collapse collapse2">
+    <h1 class="w3-center" style="font-size:90%">以下為可以對仲介提告的民法法條</h1>
+    <br>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第179條 - 不當得利</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=179','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a179}} name="bar" style="width:80%">{{output.a179}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第92條 - 詐欺</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=92','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a92}} name="bar" style="width:80%">{{output.a92}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第184條第1項前段 - 侵權行為</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=184','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a184}} name="bar" style="width:80%">{{output.a184}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第184條第1項後段 - 侵權行為</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=184','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a184_1}} name="bar" style="width:80%">{{output.a184_1}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第184條第2項 - 侵權行為</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=184','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a184_2}} name="bar" style="width:80%">{{output.a184_2}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第188條 - 侵權行為</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=188','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a188}} name="bar" style="width:80%">{{output.a188}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第544條 - 違反委任契約</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=544','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a544}} name="bar" style="width:80%">{{output.a544}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">不動產經紀業條例第26條</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0060066&flno=26','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a26}} name="bar" style="width:80%">{{output.a26}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第571條</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=571','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a571}} name="bar" style="width:80%">{{output.a571}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第227條第1項 - 不完全給付</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=227','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a227_1}} name="bar" style="width:80%">{{output.a227_1}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第227條第2項 - 不完全給付</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=227','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a227_2}} name="bar" style="width:80%">{{output.a227_2}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第227條之1 - 債務不履行的損害賠償責任</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=227-1','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a2271}} name="bar" style="width:80%">{{output.a2271}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    
+    <label class="w3-cente" style="" name="labelremove">民法第259條 - 返還價金</label>
+    <button type="button" class="w3-button w3-dark-grey w3-right" style="padding:1px 10px;" name="buttonremove" onclick="window.open('https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=259','')">法條資訊</button>
+    <div class="w3-light-grey w3-round-large">
+        <div class="w3-container w3-round-large w3-dark-grey" value={{output.a259}} name="bar" style="width:80%">{{output.a259}}%</div>
+    </div>
+    <div name="brremove"><br></div>
+    <h3>提醒事項</h3>
+    <p>仲介公司依照不動產經紀業管理條例26條及民法188條需要與仲介一同負連帶賠償責任，因此可以一併向仲介公司提起告訴。</p>
+
+    </div>
+    
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button onclick="location.href='/welcome/hahaInput'" class="w3-button w3-padding-large w3-black w3-opacity" style="margin-top:32px">返回</button>
+
+</div>
+
+<body onLoad="move()">
+
+
+
+{% endblock %}

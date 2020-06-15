@@ -1,0 +1,210 @@
+{% extends "haha_base.html" %}
+{% block title %} LawxTech {% endblock %}
+{% block content%}
+
+<!-- Container (About Section) -->
+<div class="w3-content w3-container w3-padding-32" id="form">
+  <h3 class="w3-center" style="font-size:400%">填寫資料</h3>
+  <p class="w3-center" style="font-size:120%">請依您房屋狀況確實選填以下表單，人工智慧將會從您的選項中判斷結果</p>
+  <br>
+  <br>
+  <!--<p class="w3-center"><em>這行先放著</em></p> -->
+  <!--em是斜線   w3-hover-blue  w3-text-teal -->
+  <form action="/welcome/hahaOutput" method="POST" class="w3-container w3-center">
+    {% csrf_token %}
+    
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)" class="w3-cente">
+    死亡時間
+    <br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <input class="w3-input w3-animate-input w3-center w3-text-black" name="death" required="required"
+           type="number" min="0" step="1" placeholder="填入距今死亡多少年(0~99)　" style="width:100%">
+    <p></p>
+    
+    
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)" class="w3-center" >
+    原房屋價格
+    <br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <input class="w3-input w3-animate-input w3-center w3-text-black" name="money" required="required"
+       type="number" min="0" step="100" placeholder="填入房屋價格" style="width:100%">
+    
+    
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente" >
+    死亡類型
+    <br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select class="w3-select" name="Q1" style="width:100%+10px">
+      <option value="0" selected>未知</option>
+      <option value="1">自殺</option>
+      <option value="2">他殺</option>
+      <option value="3">意外</option>
+      <option value="4">自然死、病死</option>
+    </select>
+    <p></p>
+    
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente">
+    死亡地點<br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select  class="w3-select"  name="Q2">
+      <option value="0" selected>未知</option>
+      <option value="1">專有區域</option>
+      <option value="2">非專有區域</option>
+      <option value="3">不確定</option>
+    </select>
+    <p></p>
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente">
+    是否在賣方持產權期間內<br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select  class="w3-select"  name="Q3">
+      <option value="0" selected>未知</option>
+      <option value="1">是</option>
+      <option value="2">否</option>
+    </select>
+    <p></p>
+    
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente">
+    買家是否知情是凶宅<br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select  class="w3-select"  name="Q4">
+      <option value="0" selected>未知</option>
+      <option value="1">是</option>
+      <option value="2">否</option>
+    </select>
+    <p></p>
+    
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente">
+    第三人是否知情<br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select  class="w3-select"  name="Q5">
+      <option value="0" selected>未知</option>
+      <option value="1">是</option>
+      <option value="2">否</option>
+    </select>
+    <p></p>
+    
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente">
+    不動產現況說明書有無載明非凶宅<br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select  class="w3-select"  name="Q6">
+      <option value="0" selected>未知</option>
+      <option value="1">是</option>
+      <option value="2">否</option>
+    </select>
+    <p></p>
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente">
+    契約有無記載「凶宅條款」（針對專有部分）<br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select  class="w3-select"  name="Q7">
+      <option value="0" selected>未知</option>
+      <option value="1">是</option>
+      <option value="2">否</option>
+    </select>
+    <p></p>
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente">
+    賣家是否知情為凶宅<br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select  class="w3-select"  name="Q8">
+      <option value="0" selected>未知</option>
+      <option value="1">是</option>
+      <option value="2">否</option>
+    </select>
+    <p></p>
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente">
+    合約有無載明(針對「非專有部分」)<br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select  class="w3-select"  name="Q9">
+      <option value="0" selected>未知</option>
+      <option value="1">是</option>
+      <option value="2">否</option>
+    </select>
+    <p></p>
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente">
+    仲介知情<br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select  class="w3-select"  name="Q10">
+      <option value="0" selected>未知</option>
+      <option value="1">是</option>
+      <option value="2">否</option>
+    </select>
+    <p></p>
+    
+    <label ontouchstart="mOver(this)" ontouchend="mOut(this)" onmouseover="mOver(this)" onmouseout="mOut(this)"  class="w3-cente">
+    仲介調查<br>
+    
+    <h4 style="color:Tomato;" hidden>
+    <p></p>
+    </h4>
+    </label>
+    <select  class="w3-select"  name="Q11">
+      <option value="0" selected>未知</option>
+      <option value="1">是</option>
+      <option value="2">否</option>
+    </select>
+
+    <button class="w3-button w3-padding-large w3-black w3-opacity" style="margin-top:32px">分析</button>
+  {% csrf_token %}
+  </form>
+</div>
+
+{% endblock %}

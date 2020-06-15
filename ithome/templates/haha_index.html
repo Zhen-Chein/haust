@@ -1,0 +1,75 @@
+{% extends "haha_base.html" %}
+{% block title %} LawxTech {% endblock %}
+{% block content%}
+
+<!-- Container (About Section) -->
+<div class="w3-content w3-container w3-padding-32" id="about">
+    <h3 class="w3-center" style="font-size:400%"> 智慧凶宅判斷系統 </h3>
+    <br>
+    <p class="w3-center" style="font-size:150%"> 概述 </p>
+    <p>　　智慧凶宅判斷系統是一套用於預測於買賣凶宅所生之法律爭議的系統。只要填入各種的事實條件，這套系統就能預測各個請求權基礎成立的機率，還能推薦與您情況最相似的判決給您，甚至能判斷您的房屋因此瑕疵而減損房價的多寡，藉以作為您請求賣家賠償的參考。</p>
+
+
+    <div class="w3-row w3-center w3-dark-grey w3-padding-16">
+      <div class="w3-quarter w3-section">
+        分析<br>
+        <span class="w3-xlarge" >150+</span><br>
+        判決書
+      </div>
+      <div class="w3-quarter w3-section">
+        可選<br>
+        <span class="w3-xlarge">2</span><br>
+        訴訟對象
+      </div>
+      <div class="w3-quarter w3-section">
+        顯示<br>
+        <span class="w3-xlarge">25+</span><br>
+        請求權基礎
+      </div>
+      <div class="w3-quarter w3-section">
+        節省<br>
+        <span class="w3-xlarge">90%+</span><br>
+        時間
+      </div>
+    </div>
+    <br>
+    <br>
+    <p class="w3-center" style="font-size:125%"> 想多了解有關凶宅的法律概念嗎？</p>
+    <div class="w3-center w3-section">
+        <button onclick="location.href='/welcome/hahaLaw'" class="w3-button w3-padding-large w3-black w3-opacity" style="width:150px;height:50px;"> 名詞解釋 </button>
+    </div>
+    <br>
+    <br>
+    <p class="w3-center" style="font-size:150%"> 緣起 </p>
+    <p class="w3-center" style="font-size:125%"> 科技與法律的交鋒 </p>
+
+    <div class="w3-row">
+        <div class="w3-col m6 w3-center w3-padding-large">
+          <img src="/static/law.jpg" class="w3-round w3-image w3-hover-opacity-off" alt="law" width="500" height="333">
+          <br><br>
+          <img src="/static/ai.jpg" class="w3-round w3-image w3-hover-opacity-off" alt="programing" width="500" height="333">
+        </div>
+        <!-- Hide this text on small devices -->
+        <div class="w3-col m6  w3-padding-large　">
+          <p><br>
+          　　2019年仲夏，兩三科技人和法律人聚首一堂，他們原本互不相識。在萬才館；在社科院；在某間路邊的小店，倚著薰風，他們一次又一次的思索科技與法律的各種可能。<br>
+          「DNN」「請求權基礎」「XGBoost」「瑕疵擔保」......各類專有名詞交相輝映，五光十色斑斕炫目，令他們彼此大開眼界，目不暇給。最後，他們終於激盪出這套「智慧凶宅判斷系統」，期許透過法律與科技的結合造福人群！<br>
+          「智慧凶宅判斷系統」是我們搜集網路上公開之有關買賣契約與凶宅的判決書，利用「工人智慧」進行人工標記重要的事實條件以及法院的判決結果，再以機器學習的方式訓練模型，使得法院的判決變得可預測。
+          </p>
+        </div>
+      </div>
+      
+      <br><br>
+    <p class="w3-center" style="font-size:125%"> 現在就來使用吧！</p>
+    <div class="w3-center w3-section">
+       <button onclick="location.href='/welcome/hahaInput'" class="w3-button w3-padding-large w3-black w3-opacity" style="width:150px;height:50px;">進入</button>
+    </div>
+
+
+    
+
+
+</div>
+{% endblock %}
+
+
