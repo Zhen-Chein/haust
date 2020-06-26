@@ -1,3 +1,3 @@
 # -Haunted-house
-![](https://imgur.com/gr8YldW)
+![](https://i.imgur.com/gr8YldW.png)
 ### Website: http://supercute.herokuapp.com/welcome/hahaIndex
